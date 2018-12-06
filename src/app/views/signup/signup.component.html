@@ -1,0 +1,31 @@
+<div class="holder">
+	<mdb-card class="frame">
+		<div class="header">
+			Light GTD
+		</div>
+	
+		<mdb-card-body>
+
+			<form #formData="ngForm" class="md-form text-center mt-0 mb-0" (ngSubmit)="onSubmit(formData)">
+
+				<div *ngIf="error!=null" class="alert alert-danger">{{error}}</div>
+
+				<input type="email" id="defaultLoginFormEmail" (ngModel)="email" name="email" #email="ngModel" class="form-control mb-4" placeholder="Email" required>
+	
+				<input type="password" id="defaultLoginFormPassword" (ngModel)="password" name="password" #password="ngModel" class="form-control mb-4" placeholder="Password" required>
+
+				<input type="password" (ngModel)="passwordConfirm" name="passwordConfirm" #passwordConfirm="ngModel" class="form-control mb-2" placeholder="Password confirmation" required>
+
+				<div class="text-right text-muted mb-4 small">This action will create a new user</div>
+
+				<button [disabled]='!formData.valid' class="btn btn-primary btn-block mb-0" type="submit" mdbWavesEffect>Sign up</button>
+
+			</form>
+
+			<div class="text-right mt-2">
+				<a routerLink="/login" class="btn btn-light btn-block" mdbWavesEffect>Log in</a>
+			</div>
+
+		</mdb-card-body>
+	</mdb-card>
+</div>

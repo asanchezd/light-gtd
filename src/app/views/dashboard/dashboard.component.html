@@ -1,0 +1,55 @@
+<div class="layout">
+	<div class="sidebar">
+		<div class="header">
+			Light GTD
+		</div>
+		<div class="section-title">
+			Collect
+		</div>
+		<ul>
+			<li>
+				<a routerLink="/dashboard/inbox"><i class="fa fa-inbox"></i>Inbox<span class="badge badge-light float-right" [class.active]="numberOfTasksInInbox!=0">{{numberOfTasksInInbox}}</span></a>
+			</li>
+			<li>
+				<a routerLink="/dashboard/someday"><i class="fa fa-calendar-minus-o"></i>Someday<span class="badge badge-light float-right" [class.active]="numberOfTasksInSomeday!=0">{{numberOfTasksInSomeday}}</span></a>
+			</li>
+			<li>
+				<a routerLink="/dashboard/scratchpad"><i class="fa fa-sticky-note-o"></i>Scratchpad<span class="badge badge-light float-right" [class.active]="numberOfTasksInScratchpad!=0">{{numberOfTasksInScratchpad}}</span></a>
+			</li>
+		</ul>
+		<div class="section-title">
+			Focus
+		</div>
+		<ul>
+			<li>
+				<a routerLink="/dashboard/today"><i class="fa fa-calendar-check-o"></i>Today<span class="badge badge-light float-right" [class.active]="numberOfTasksInToday!=0">{{numberOfTasksInToday}}</span></a>
+			</li>
+			<li>
+				<a routerLink="/dashboard/next"><i class="fa fa-arrow-circle-o-right"></i>Next<span class="badge badge-light float-right" [class.active]="numberOfTasksInNext!=0">{{numberOfTasksInNext}}</span></a>
+			</li>
+			<li>
+				<a routerLink="/dashboard/waiting"><i class="fa fa-clock-o"></i>Waiting<span class="badge badge-light float-right" [class.active]="numberOfTasksInWaiting!=0">{{numberOfTasksInWaiting}}</span></a>
+			</li>
+		</ul>
+		<div class="section-title">
+			General
+		</div>
+		<ul>
+			<li>
+				<a routerLink="/dashboard/archive"><i class="fa fa-archive"></i>Archive</a>
+				<a routerLink="/dashboard/tags"><i class="fa fa-tags"></i>Tags</a>
+			</li>
+		</ul>
+		<div class="section-title">
+			Account
+		</div>
+		<ul>
+			<li>
+				<a (click)="logOut()"><i class="fa fa-sign-out"></i>Log out</a>
+			</li>
+		</ul>
+	</div>
+	<div class="content">
+		<router-outlet></router-outlet>
+	</div>
+</div>

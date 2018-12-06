@@ -16,6 +16,8 @@
 *.launch
 .settings/
 *.sublime-workspace
+.editorconfig
+
 
 # IDE - VSCode
 .vscode/*
@@ -33,6 +35,9 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+readme.md
+/.firebase
+.firebaserc
 
 # System Files
 .DS_Store

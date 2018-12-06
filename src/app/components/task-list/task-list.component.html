@@ -1,0 +1,86 @@
+<h1 [ngSwitch]="targetCategory">
+	<span *ngSwitchCase="taskCategoryEnum.Inbox">Inbox</span>
+	<span *ngSwitchCase="taskCategoryEnum.Someday">Someday</span>
+	<span *ngSwitchCase="taskCategoryEnum.Scratchpad">Scratchpad</span>
+	<span *ngSwitchCase="taskCategoryEnum.Today">Today</span>
+	<span *ngSwitchCase="taskCategoryEnum.Next">Next</span>
+	<span *ngSwitchCase="taskCategoryEnum.Waiting">Waiting</span>
+	<span *ngSwitchCase="taskCategoryEnum.Archive">Archive</span>
+</h1>
+
+<div *ngIf="targetCategory == taskCategoryEnum.Inbox || editingTaskId != null" class="md-form input-group mt-0">
+	<input type="text" class="form-control" placeholder="New task" [(ngModel)]="newTaskDescription" (keyup)="newTaskInputKeyUp($event)" autofocus />
+	<div class="input-group-append">
+		<button *ngIf="editingTaskId == null" mdbBtn color="primary" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2" mdbWavesEffect (click)="newTaskClick()">Create</button>
+		<button *ngIf="editingTaskId != null" mdbBtn color="primary" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2" mdbWavesEffect (click)="newTaskClick()">Edit</button>
+	</div>
+</div>
+
+<mdb-card *ngFor="let task of tasks" class="mb-2">
+
+	<table>
+		<tr>
+			<td>
+				<div>
+					{{task.description}}
+				</div>
+				<div>
+					<span class="mr-3">
+						<span>
+							<i class="fa fa-calendar-o"></i>&nbsp; {{task.createdAt | date : "MM/dd/yyyy hh:mm"}}
+						</span>
+					</span>
+					<span>
+						<span *ngFor="let tagId of task.tags">
+							<span *ngIf="findTagName(tagId) != ''" class="task-tag"><i class="fa fa-tag"></i>&nbsp; {{ findTagName(tagId) }} &nbsp;<span class="remove-tag-bt" title="Remove" (click)="removeTag(task.id,tagId)"><i class="fa fa-times"></i></span></span> 
+						</span>
+					</span>
+				</div>
+			</td>
+			<td>
+				<div class="btn-group mr-2" mdbDropdown>
+					<button mdbDropdownToggle type="button" mdbBtn color="primary" class="dropdown-toggle waves-light" mdbWavesEffect title="Add tag">
+						<i class="fa fa-tag"></i>&nbsp;
+					</button>
+
+					<div class="dropdown-menu dropdown-primary dropdown-menu-right">
+						<a *ngFor="let tag of tags" class="dropdown-item" (click)="addTag(task.id,tag.id)">{{tag.name}}</a>
+					</div>
+				</div>
+				<div class="btn-group mr-2" mdbDropdown>
+					<button mdbDropdownToggle type="button" mdbBtn color="primary" class="dropdown-toggle waves-light" mdbWavesEffect title="Move">
+						<i class="fa fa-share-square-o"></i>&nbsp;
+					</button>
+
+					<div class="dropdown-menu dropdown-primary dropdown-menu-right">
+						<a class="dropdown-item" (click)="moveTask(task.id,taskCategoryEnum.Inbox)">Inbox</a>
+						<a class="dropdown-item" (click)="moveTask(task.id,taskCategoryEnum.Someday)">Someday</a>
+						<a class="dropdown-item" (click)="moveTask(task.id,taskCategoryEnum.Scratchpad)">Scratchpad</a>
+						<a class="dropdown-item" (click)="moveTask(task.id,taskCategoryEnum.Today)">Today</a>
+						<a class="dropdown-item" (click)="moveTask(task.id,taskCategoryEnum.Next)">Next</a>
+						<a class="dropdown-item" (click)="moveTask(task.id,taskCategoryEnum.Waiting)">Waiting</a>
+						<a class="dropdown-item" (click)="moveTask(task.id,taskCategoryEnum.Archive)">Archive</a>
+					</div>
+				</div>
+				<div class="btn-group" mdbDropdown>
+					<button mdbDropdownToggle type="button" mdbBtn color="primary" class="dropdown-toggle waves-light" mdbWavesEffect title="Manage">
+						<i class="fa fa-cog"></i>&nbsp;
+					</button>
+
+					<div class="dropdown-menu dropdown-primary dropdown-menu-right">
+						<a class="dropdown-item" (click)="setEditingTask(task.id)">Edit</a>
+						<div class="divider dropdown-divider"></div>
+						<a class="dropdown-item" (click)="deleteTask(task.id)">Delete</a>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+</mdb-card>
+
+<div *ngIf="tasks == null || tasks.length == 0" class="alert alert-light">
+	<h3 class="text-center text-muted">
+		No tasks available
+	</h3>
+</div>

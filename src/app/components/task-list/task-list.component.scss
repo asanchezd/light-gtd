@@ -1,0 +1,38 @@
+table{
+    width: 100%;
+    box-shadow: none;
+    margin: 6px 10px;
+}
+
+table tr td:first-child div:first-child{
+    font-size: 18px;
+}
+
+table tr td:first-child div:last-child{
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+table tr td:last-child{
+    width: 205px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.dropdown-toggle{
+    padding: 8px 12px;
+}
+
+.task-tag{
+    margin-right: 14px;
+}
+
+.remove-tag-bt{
+    opacity: 0;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.task-tag:hover .remove-tag-bt{
+    opacity: 1;
+}

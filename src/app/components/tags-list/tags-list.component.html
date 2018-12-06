@@ -1,0 +1,17 @@
+<h1>
+	Tags
+</h1>
+
+<div class="md-form input-group mt-0">
+	<input type="text" class="form-control" placeholder="New tag" [(ngModel)]="newTagName" (keyup)="newTagInputKeyUp($event)" autofocus />
+	<div class="input-group-append">
+		<button mdbBtn color="primary" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2" mdbWavesEffect (click)="newTagClick()">Create</button>
+	</div>
+</div>
+
+<mdb-card *ngFor="let tag of tags" class="mb-2 mr-2 tag-card">
+	<div>
+		<span>{{tag.name}}</span>
+		<span class="btn btn-primary" mdbWavesEffect (click)="deleteTag(tag.id)"><i class="fa fa-times"></i></span>
+	</div>
+</mdb-card>
