@@ -19,7 +19,7 @@ import { TaskCategory } from './models/task-category.enum';
 import { TagsListComponent } from './components/tags-list/tags-list.component';
 
 const appRoutes: Routes = [
-	{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+	{ path: '', redirectTo: '/dashboard/inbox', pathMatch: 'full' },
 	{ path: 'login', component: LoginComponent },
 	{
 		path: 'dashboard', component: DashboardComponent, canActivate: [AuthenticatedGuard],
